@@ -28,7 +28,7 @@
 		F82E14EC2722F308007E39F7 /* WebImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImage.swift; sourceTree = "<group>"; };
 		F82E14EF2722F614007E39F7 /* JSONParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParser.swift; sourceTree = "<group>"; };
 		F82E14F12722FADD007E39F7 /* WebImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImageViewModel.swift; sourceTree = "<group>"; };
-		F8D54236271F3F82004EFCA0 /* Swift VK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Swift VK.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8D54236271F3F82004EFCA0 /* ImageWebGallery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageWebGallery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8D54239271F3F82004EFCA0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F8D5423B271F3F82004EFCA0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		F8D5423D271F3F82004EFCA0 /* ImagesCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesCollectionView.swift; sourceTree = "<group>"; };
@@ -62,7 +62,7 @@
 		F8D5422D271F3F82004EFCA0 = {
 			isa = PBXGroup;
 			children = (
-				F8D54238271F3F82004EFCA0 /* Swift VK */,
+				F8D54238271F3F82004EFCA0 /* ImageWebGallery */,
 				F8D54237271F3F82004EFCA0 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -70,12 +70,12 @@
 		F8D54237271F3F82004EFCA0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F8D54236271F3F82004EFCA0 /* Swift VK.app */,
+				F8D54236271F3F82004EFCA0 /* ImageWebGallery.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		F8D54238271F3F82004EFCA0 /* Swift VK */ = {
+		F8D54238271F3F82004EFCA0 /* ImageWebGallery */ = {
 			isa = PBXGroup;
 			children = (
 				F82E14EE2722F5F4007E39F7 /* Services */,
@@ -88,7 +88,7 @@
 				F8D54244271F3F83004EFCA0 /* LaunchScreen.storyboard */,
 				F8D54247271F3F83004EFCA0 /* Info.plist */,
 			);
-			path = "Swift VK";
+			path = ImageWebGallery;
 			sourceTree = "<group>";
 		};
 		F8D5424D271F3FD0004EFCA0 /* Views */ = {
@@ -121,9 +121,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F8D54235271F3F82004EFCA0 /* Swift VK */ = {
+		F8D54235271F3F82004EFCA0 /* ImageWebGallery */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F8D5424A271F3F83004EFCA0 /* Build configuration list for PBXNativeTarget "Swift VK" */;
+			buildConfigurationList = F8D5424A271F3F83004EFCA0 /* Build configuration list for PBXNativeTarget "ImageWebGallery" */;
 			buildPhases = (
 				F8D54232271F3F82004EFCA0 /* Sources */,
 				F8D54233271F3F82004EFCA0 /* Frameworks */,
@@ -133,13 +133,13 @@
 			);
 			dependencies = (
 			);
-			name = "Swift VK";
+			name = ImageWebGallery;
 			packageProductDependencies = (
 				F82E14E827208AB0007E39F7 /* RxCocoa */,
 				F82E14EA27208AB0007E39F7 /* RxSwift */,
 			);
 			productName = "Swift VK";
-			productReference = F8D54236271F3F82004EFCA0 /* Swift VK.app */;
+			productReference = F8D54236271F3F82004EFCA0 /* ImageWebGallery.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -157,7 +157,7 @@
 					};
 				};
 			};
-			buildConfigurationList = F8D54231271F3F82004EFCA0 /* Build configuration list for PBXProject "Swift VK" */;
+			buildConfigurationList = F8D54231271F3F82004EFCA0 /* Build configuration list for PBXProject "ImageWebGallery" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -173,7 +173,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F8D54235271F3F82004EFCA0 /* Swift VK */,
+				F8D54235271F3F82004EFCA0 /* ImageWebGallery */,
 			);
 		};
 /* End PBXProject section */
@@ -346,7 +346,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = N962RD7M74;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Swift VK/Info.plist";
+				INFOPLIST_FILE = ImageWebGallery/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -356,7 +356,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "stanislavbriver.Swift-VK";
+				PRODUCT_BUNDLE_IDENTIFIER = stanislavbriver.ImageWebGallery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -373,7 +373,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = N962RD7M74;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Swift VK/Info.plist";
+				INFOPLIST_FILE = ImageWebGallery/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -383,7 +383,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "stanislavbriver.Swift-VK";
+				PRODUCT_BUNDLE_IDENTIFIER = stanislavbriver.ImageWebGallery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -394,7 +394,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F8D54231271F3F82004EFCA0 /* Build configuration list for PBXProject "Swift VK" */ = {
+		F8D54231271F3F82004EFCA0 /* Build configuration list for PBXProject "ImageWebGallery" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F8D54248271F3F83004EFCA0 /* Debug */,
@@ -403,7 +403,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F8D5424A271F3F83004EFCA0 /* Build configuration list for PBXNativeTarget "Swift VK" */ = {
+		F8D5424A271F3F83004EFCA0 /* Build configuration list for PBXNativeTarget "ImageWebGallery" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F8D5424B271F3F83004EFCA0 /* Debug */,
