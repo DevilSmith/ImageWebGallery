@@ -8,6 +8,7 @@
 import Foundation
 
 protocol JSONGenericParser{
+    
     associatedtype ParserType: Decodable
     
     func loadData(urlString: String, completion: @escaping(ParserType?, Error?)->())

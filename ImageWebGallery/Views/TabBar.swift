@@ -18,8 +18,13 @@ class ApplicationTabBar: UIViewController{
         
         let tabBar = UITabBarController()
         
-        imagesView.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 1)
-        tabBar.viewControllers = [imagesView]
+        
+        let imagesNavigationController = UINavigationController(rootViewController: imagesView)
+        imagesView.collectionView.translatesAutoresizingMaskIntoConstraints = false
+
+        
+        imagesView.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
+        tabBar.viewControllers = [imagesNavigationController]
         
         
         self.view.addSubview(tabBar.view)

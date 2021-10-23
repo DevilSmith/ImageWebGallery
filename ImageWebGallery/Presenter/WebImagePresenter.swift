@@ -8,7 +8,11 @@
 import Foundation
 import UIKit
 
-class WebImageViewModel{
+class WebImagePresenter: ImageCollectionViewUpdateDelegate{
+    
+    var collectionView: UICollectionView!
+    
+    private var increaseCounter = 1
     
     var webImage: WebImages?
     var parser = JSONParser<WebImages>()
@@ -24,7 +28,6 @@ class WebImageViewModel{
         guard let url = URL(string: urlString) else {print("Failed to loading image"); return}
         
         URLSession.shared.dataTask(with: url) { dataImage, response, error in
-//            print("Download image...")
             
             guard let data = dataImage else {return}
             
@@ -34,20 +37,39 @@ class WebImageViewModel{
     }
     
     
-    func loadDataFromResource()->(){
+    func loadDataFromResource(_ pageNumber: Int? = 1)->(){
         
-        parser.loadData(urlString: "https://api.unsplash.com/search/photos?page=1&query=london&client_id=xi_W1e0UGBk-AXb0-WIyqNDq48FjcrWD7BYxSl1P3lg") { (webImage, nil) in
+        let page = pageNumber ?? 1
+        
+        let query = "catalina"
+        
+        parser.loadData(urlString: "https://api.unsplash.com/search/photos?page=\(page)&query=\(query)&client_id=xi_W1e0UGBk-AXb0-WIyqNDq48FjcrWD7BYxSl1P3lg") { (webImage, nil) in
             if let tempResult = webImage?.results {
                 tempResult.forEach { imageResult in
                     DispatchQueue.global(qos: .background).sync{
                         self.downloadImage(urlString: imageResult.urls.regular) { image, error in
                             print("Download image: \(imageResult.id)")
                             self.results.append(ImageModel(image: image))
+                            DispatchQueue.main.async{
+                                self.updateCollectionView()
+                            }
                         }
-                       
                 }
                 }
             }
+        }
+    }
+    
+    func updateCollectionView() {
+        self.collectionView.reloadData()
+        print("Updated")
+    }
+    
+    func increaseDataLoading(){
+        DispatchQueue.main.async{
+            print(self.increaseCounter)
+//            self.loadDataFromResource(self.increaseCounter)
+            self.increaseCounter += 1
         }
     }
     

@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class ImageViewModel{
+class ImagePresenter{
     
     var imageArray: [ImageModel] = [
         ImageModel(image: UIImage(named: "MockImage")),
