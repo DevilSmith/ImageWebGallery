@@ -17,7 +17,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let windowScene = (scene as? UIWindowScene) else { return }
-//        let viewController = ImageCollectionView(collectionViewLayout: UICollectionViewFlowLayout())
+        
+        setupBarAppearence()
+        
         let viewController = ApplicationTabBar()
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
@@ -25,6 +27,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.makeKeyAndVisible()
     }
 
+    func setupBarAppearence()->Void{
+        
+        let navigationBarAppearence = UINavigationBarAppearance()
+        navigationBarAppearence.backgroundColor = UIColor(named: "AccentColor")
+        
+        UINavigationBar.appearance().standardAppearance = navigationBarAppearence
+        UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearence
+        UINavigationBar.appearance().compactAppearance = navigationBarAppearence
+        
+        let tabBarAppearence = UITabBarAppearance()
+        tabBarAppearence.backgroundColor = UIColor(named: "AccentColor")
+        
+        UITabBar.appearance().scrollEdgeAppearance = tabBarAppearence
+        UITabBar.appearance().standardAppearance = tabBarAppearence
+        
+    }
+    
+    
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.

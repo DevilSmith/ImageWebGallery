@@ -39,12 +39,14 @@ class ImageCollectionView: UICollectionViewController {
         super.viewDidLoad()
         
         
-//        let searchController = UISearchController()
-//        self.navigationItem.searchController = searchController
+        let searchController = UISearchController()
+        self.navigationItem.searchController = searchController
+        
 
         self.title = "Controller"
         
         
+        self.collectionView.contentInset = UIEdgeInsets(top: 100, left: UIScreen().bounds.minX, bottom: 100, right: UIScreen().bounds.maxX)
         
         
         self.sizeCell = CGSize(width: (UIScreen.main.bounds.width - 2) / 3, height: (UIScreen.main.bounds.width - 2) / 3)
@@ -166,6 +168,8 @@ class ImageCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.alpha = 0
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
         return imageView
     }()
 
