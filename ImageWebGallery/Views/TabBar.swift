@@ -8,26 +8,32 @@
 import UIKit
 
 
-class ApplicationTabBar: UIViewController{
+class ApplicationTabBar: UITabBarController{
 
    
-    let imagesView = ImageCollectionView(collectionViewLayout: UICollectionViewFlowLayout())
+//    let imagesView = ImageCollectionView(collectionViewLayout: UICollectionViewFlowLayout())
+    
+    let navigationViewController: UINavigationController = {
+        let imagesView = ImageCollectionView(collectionViewLayout: UICollectionViewFlowLayout())
+        imagesView.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
+        let nvContoller = UINavigationController(rootViewController: imagesView)
+        nvContoller.navigationBar.prefersLargeTitles = true
+        
+        return nvContoller
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let tabBar = UITabBarController()
         
         
-        let imagesNavigationController = UINavigationController(rootViewController: imagesView)
-        imagesView.collectionView.translatesAutoresizingMaskIntoConstraints = false
+//        let imagesNavigationController = UINavigationController(rootViewController: imagesView)
+//        imagesNavigationController.navigationBar.prefersLargeTitles = true
 
         
-        imagesView.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
-        tabBar.viewControllers = [imagesNavigationController]
+//        imagesView.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
+        self.viewControllers = [navigationViewController]
         
-        
-        self.view.addSubview(tabBar.view)
     }
         
     

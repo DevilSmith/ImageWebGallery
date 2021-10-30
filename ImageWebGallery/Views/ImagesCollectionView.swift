@@ -17,7 +17,7 @@ protocol ImageCollectionViewUpdateDelegate {
 }
 
 
-class ImageCollectionView: UICollectionViewController {
+class ImageCollectionView: UICollectionViewController, UINavigationBarDelegate {
     
       
     let imageViewPresenter = WebImagePresenter()
@@ -25,7 +25,6 @@ class ImageCollectionView: UICollectionViewController {
     var updateDelegate: ImageCollectionViewUpdateDelegate?
     
     var sizeCell: CGSize!
-    
     
     
     let customRefreshControl: UIRefreshControl = {
@@ -38,16 +37,20 @@ class ImageCollectionView: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        let searchController = UISearchController()
+        let searchController = UISearchController(searchResultsController: nil)
         self.navigationItem.searchController = searchController
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.delegate = self
+//        searchController.navigationController?.navigationBar.delegate = self
         
 
-        self.title = "Controller"
+        self.title = "Web gallery"
+        self.navigationItem.largeTitleDisplayMode = .automatic
         
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.collectionView.contentInsetAdjustmentBehavior = .automatic
         
-        self.collectionView.contentInset = UIEdgeInsets(top: 100, left: UIScreen().bounds.minX, bottom: 100, right: UIScreen().bounds.maxX)
-        
+
         
         self.sizeCell = CGSize(width: (UIScreen.main.bounds.width - 2) / 3, height: (UIScreen.main.bounds.width - 2) / 3)
         
@@ -58,7 +61,7 @@ class ImageCollectionView: UICollectionViewController {
         
         imageViewPresenter.collectionView = self.collectionView
         self.updateDelegate = imageViewPresenter
-        imageViewPresenter.loadDataFromResource()
+        imageViewPresenter.loadDataFromResource(1, "NewYork")
         self.collectionView.refreshControl = customRefreshControl
         self.collectionView.register(ImageCell.self, forCellWithReuseIdentifier: "ImageCell")
     }
@@ -83,6 +86,11 @@ class ImageCollectionView: UICollectionViewController {
         cell.backgroundColor = .clear
         return cell
     }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(indexPath)
+    }
+    
 }
 
 
@@ -106,6 +114,25 @@ extension ImageCollectionView: UICollectionViewDelegateFlowLayout{
 
 }
 
+extension ImageCollectionView: UISearchResultsUpdating{
+    
+    func updateSearchResults(for searchController: UISearchController) {
+//        guard let text = searchController.searchBar.text else {return}
+//        print(text)
+    }
+    }
+
+extension ImageCollectionView: UISearchBarDelegate{
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let text = searchBar.text else {return}
+        imageViewPresenter.deleteData()
+        imageViewPresenter.loadDataFromResource(1, text)
+        self.collectionView.reloadData()
+    }
+    
+}
+
 
 
 extension ImageCollectionView{
@@ -119,13 +146,16 @@ extension ImageCollectionView{
     }
     
     
-    
-    
     @objc func didRefresh(_ sender: UIRefreshControl){
-        collectionView.reloadData()
-        print("Reload data")
-        print(imageViewPresenter.results)
-        self.customRefreshControl.endRefreshing()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            print("Reload data")
+            print(self.imageViewPresenter.results)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.collectionView.reloadData()
+                self.customRefreshControl.endRefreshing()
+            }
+        }
+        
     }
     
     @objc func didPinch(_ sender: UIPinchGestureRecognizer){
@@ -157,6 +187,7 @@ extension ImageCollectionView{
 
 class ImageCell: UICollectionViewCell {
     
+    
     var data: ImageModel? {
         didSet {
             guard let data = data else {return}
@@ -173,7 +204,6 @@ class ImageCell: UICollectionViewCell {
         return imageView
     }()
 
-    
     override init(frame: CGRect) {
         super.init(frame: .zero)
         contentView.addSubview(image)
@@ -181,7 +211,7 @@ class ImageCell: UICollectionViewCell {
         UIView.animate(withDuration: 0.5) {
             self.image.alpha = 1
         }
-
+        
         image.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
         image.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         image.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true

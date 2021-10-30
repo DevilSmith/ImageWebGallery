@@ -10,6 +10,8 @@ import UIKit
 
 class WebImagePresenter: ImageCollectionViewUpdateDelegate{
     
+    let id = "xi_W1e0UGBk-AXb0-WIyqNDq48FjcrWD7BYxSl1P3lg"
+    
     var collectionView: UICollectionView!
     
     private var increaseCounter = 1
@@ -37,17 +39,21 @@ class WebImagePresenter: ImageCollectionViewUpdateDelegate{
     }
     
     
-    func loadDataFromResource(_ pageNumber: Int? = 1)->(){
+    func loadDataFromResource(_ pageNumber: Int? = 1, _ querySearch: String? = "")->(){
         
         let page = pageNumber ?? 1
         
-        let query = "catalina"
+        let query = querySearch ?? ""
         
-        parser.loadData(urlString: "https://api.unsplash.com/search/photos?page=\(page)&query=\(query)&client_id=xi_W1e0UGBk-AXb0-WIyqNDq48FjcrWD7BYxSl1P3lg") { (webImage, nil) in
+        let filteredQuery = query.filter {($0 != ".") && ($0 != " ")}
+        
+        print(filteredQuery)
+        
+        parser.loadData(urlString: "https://api.unsplash.com/search/photos?page=\(page)&query=\(filteredQuery)&client_id=\(id)") { (webImage, nil) in
             if let tempResult = webImage?.results {
                 tempResult.forEach { imageResult in
                     DispatchQueue.global(qos: .background).sync{
-                        self.downloadImage(urlString: imageResult.urls.regular) { image, error in
+                        self.downloadImage(urlString: imageResult.urls.small) { image, error in
                             print("Download image: \(imageResult.id)")
                             self.results.append(ImageModel(image: image))
                             DispatchQueue.main.async{
@@ -71,6 +77,10 @@ class WebImagePresenter: ImageCollectionViewUpdateDelegate{
 //            self.loadDataFromResource(self.increaseCounter)
             self.increaseCounter += 1
         }
+    }
+    
+    func deleteData(){
+        results = []
     }
     
 }
