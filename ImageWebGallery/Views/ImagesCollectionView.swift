@@ -116,7 +116,7 @@ extension ImageCollectionView: UICollectionViewDelegateFlowLayout{
 extension ImageCollectionView: UISearchResultsUpdating{
 
     func updateSearchResults(for searchController: UISearchController) {
-/// Real-time searching method
+///       Real-time searching method:
 //        guard let text = searchController.searchBar.text else {return}
 //        print(text)
     }
@@ -136,14 +136,18 @@ extension ImageCollectionView: UISearchBarDelegate{
 extension ImageCollectionView{
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        #if DEBUG
         print(indexPath)
+        #endif
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCell", for: indexPath) as! ImageCell
         
         let imageView = ImageView(image: imageViewPresenter.results[indexPath.item].image!)
         imageView.modalPresentationStyle = .pageSheet
         
+        #if DEBUG
         print(cell.image)
+        #endif
         self.present(imageView, animated: true, completion: nil)
         
     }
@@ -158,8 +162,10 @@ extension ImageCollectionView{
     
     @objc func didRefresh(_ sender: UIRefreshControl){
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            #if DEBUG
             print("Reload data")
             print(self.imageViewPresenter.results)
+            #endif
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 self.collectionView.reloadData()
                 self.customRefreshControl.endRefreshing()
@@ -170,24 +176,32 @@ extension ImageCollectionView{
     @objc func didPinch(_ sender: UIPinchGestureRecognizer){
         if sender.state == .changed {
             let scale = sender.scale
+            #if DEBUG
             print(scale)
+            #endif
             
             if scale > 3 {
                 self.sizeCell = CGSize(width: (view.frame.width - 2), height: (view.frame.width - 2))
                 self.collectionView.collectionViewLayout.invalidateLayout()
+                #if DEBUG
                 print(self.sizeCell ?? 0)
+                #endif
             }
             
             if (scale > 1.8) && (scale < 3) {
                 self.sizeCell = CGSize(width: (view.frame.width - 2) / 2, height: (view.frame.width - 2) / 2)
                 self.collectionView.collectionViewLayout.invalidateLayout()
+                #if DEBUG
                 print(self.sizeCell ?? 0)
+                #endif
             }
             
             if scale < 1 {
                 self.sizeCell = CGSize(width: (view.frame.width - 2) / 3, height: (view.frame.width - 2) / 3)
                 self.collectionView.collectionViewLayout.invalidateLayout()
+                #if DEBUG
                 print(self.sizeCell ?? 0)
+                #endif
             }
         }
     }

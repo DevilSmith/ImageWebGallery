@@ -32,14 +32,18 @@ class WebImagePresenter: ImageCollectionViewUpdateDelegate{
         
         let filteredQuery = query.filter {($0 != ".") && ($0 != " ")}
         
+        #if DEBUG
         print(filteredQuery)
+        #endif
         
         parser.loadData(urlString: "https://api.unsplash.com/search/photos?page=\(page)&query=\(filteredQuery)&client_id=\(id)") { (webImage, nil) in
             if let tempResult = webImage?.results {
                 tempResult.forEach { imageResult in
                     DispatchQueue.global(qos: .background).sync{
                         self.downloadImageHelper.downloadImage(urlString: imageResult.urls.regular) { image, error in
+                            #if DEBUG
                             print("Download image: \(imageResult.id)")
+                            #endif
                             self.results.append(ImageModel(image: image))
                             DispatchQueue.main.async{
                                 self.updateCollectionView()
@@ -53,13 +57,18 @@ class WebImagePresenter: ImageCollectionViewUpdateDelegate{
     
     func updateCollectionView() {
         self.collectionView.reloadData()
+        #if DEBUG
         print("Updated")
+        #endif
     }
     
     func increaseDataLoading(){
         DispatchQueue.main.async{
+            #if DEBUG
             print(self.increaseCounter)
-//            self.loadDataFromResource(self.increaseCounter)
+            #endif
+///     Enable infinity scrolling update data in CollectionView
+///     --->       self.loadDataFromResource(self.increaseCounter)
             self.increaseCounter += 1
         }
     }
