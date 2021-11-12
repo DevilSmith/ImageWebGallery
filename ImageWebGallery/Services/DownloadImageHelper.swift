@@ -3,6 +3,7 @@
 //  ImageWebGallery
 //
 //  Created by Stanislav Briver on 06.11.2021.
+//  Copyright © 2021 Stanislav Briver. All rights reserved.
 //
 
 import Foundation

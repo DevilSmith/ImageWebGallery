@@ -43,13 +43,6 @@ class ImageView: UIViewController{
         imageView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -200).isActive = true
         
         print(image)
-        
-
-
-        
-//        imageView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-//        imageView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
-        
        
         
     }

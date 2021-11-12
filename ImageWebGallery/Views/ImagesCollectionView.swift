@@ -16,10 +16,8 @@ protocol ImageCollectionViewUpdateDelegate {
     
 }
 
-
 class ImageCollectionView: UICollectionViewController, UINavigationBarDelegate {
     
-      
     let imageViewPresenter = WebImagePresenter()
      
     var updateDelegate: ImageCollectionViewUpdateDelegate?
@@ -32,41 +30,53 @@ class ImageCollectionView: UICollectionViewController, UINavigationBarDelegate {
         return refresh
     }()
     
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        
+    func setupSearchController(){
         let searchController = UISearchController(searchResultsController: nil)
         self.navigationItem.searchController = searchController
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
-//        searchController.navigationController?.navigationBar.delegate = self
-        
-
+    }
+    
+    func setupNavigationItem(){
         self.title = "Web gallery"
         self.navigationItem.largeTitleDisplayMode = .automatic
-        
         self.navigationController?.navigationBar.isTranslucent = true
         self.collectionView.contentInsetAdjustmentBehavior = .automatic
-        
-
-        
-        self.sizeCell = CGSize(width: (UIScreen.main.bounds.width - 2) / 3, height: (UIScreen.main.bounds.width - 2) / 3)
-        
-        
+    }
+    
+    func setupGestures(){
         let zoom = UIPinchGestureRecognizer(target: self, action: #selector(didPinch(_:)))
         self.collectionView.addGestureRecognizer(zoom)
         self.collectionView.isUserInteractionEnabled = true
-        
+    }
+    
+    func setupDelegate(){
         imageViewPresenter.collectionView = self.collectionView
         self.updateDelegate = imageViewPresenter
         imageViewPresenter.loadDataFromResource(1, "NewYork")
-        self.collectionView.refreshControl = customRefreshControl
+    }
+    
+    func setupCell(){
+        self.sizeCell = CGSize(width: (UIScreen.main.bounds.width - 2) / 3, height: (UIScreen.main.bounds.width - 2) / 3)
         self.collectionView.register(ImageCell.self, forCellWithReuseIdentifier: "ImageCell")
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setupSearchController()
+        
+        setupNavigationItem()
+        
+        setupGestures()
+        
+        setupDelegate()
+
+        setupCell()
+        
+        self.collectionView.refreshControl = customRefreshControl
+
+    }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
@@ -86,17 +96,12 @@ class ImageCollectionView: UICollectionViewController, UINavigationBarDelegate {
         cell.backgroundColor = .clear
         return cell
     }
-    
-    
 }
-
 
 
 extension ImageCollectionView: UICollectionViewDelegateFlowLayout{
     
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        self.sizeCell = CGSize(width: (view.frame.width - 2) / 3, height: (view.frame.width - 2) / 3)
         return self.sizeCell
     }
     
@@ -111,13 +116,16 @@ extension ImageCollectionView: UICollectionViewDelegateFlowLayout{
 
 }
 
+
 extension ImageCollectionView: UISearchResultsUpdating{
-    
+
     func updateSearchResults(for searchController: UISearchController) {
+/// Real-time searching method
 //        guard let text = searchController.searchBar.text else {return}
 //        print(text)
     }
-    }
+}
+
 
 extension ImageCollectionView: UISearchBarDelegate{
     
