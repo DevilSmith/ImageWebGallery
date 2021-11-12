@@ -3,19 +3,20 @@
 //  ImageWebGallery
 //
 //  Created by Stanislav Briver on 06.11.2021.
+//  Copyright © 2021 Stanislav Briver. All rights reserved.
 //
 
-import Foundation
 import UIKit
-
 
 class ImageView: UIViewController{
     
     let image: UIImage
     
+    let imageView: UIImageView
+    
     init(image: UIImage){
         self.image = image
-        
+        self.imageView = UIImageView(image: image)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -23,24 +24,26 @@ class ImageView: UIViewController{
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        self.view.backgroundColor = .systemBackground
-        self.navigationItem.largeTitleDisplayMode = .never
-        
-        let imageView = UIImageView(image: image)
-        
-        self.view.addSubview(imageView)
-        
+    func setupConstraint(){
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        
         imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         imageView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         imageView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         imageView.topAnchor.constraint(equalTo: view.topAnchor, constant: +200).isActive = true
         imageView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -200).isActive = true
+    }
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.view.backgroundColor = .systemBackground
+        self.navigationItem.largeTitleDisplayMode = .never
+        
+        self.view.addSubview(imageView)
+    
+        setupConstraint()
         
         print(image)
        

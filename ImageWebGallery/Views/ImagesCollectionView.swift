@@ -1,8 +1,9 @@
 //
 //  ViewController.swift
-//  Swift VK
+//  ImageWebGallery
 //
 //  Created by Stanislav Briver on 19.10.2021.
+//  Copyright © 2021 Stanislav Briver. All rights reserved.
 //
 
 import UIKit
@@ -65,13 +66,9 @@ class ImageCollectionView: UICollectionViewController, UINavigationBarDelegate {
         super.viewDidLoad()
         
         setupSearchController()
-        
         setupNavigationItem()
-        
         setupGestures()
-        
         setupDelegate()
-
         setupCell()
         
         self.collectionView.refreshControl = customRefreshControl
@@ -113,7 +110,6 @@ extension ImageCollectionView: UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 1
     }
-
 }
 
 
@@ -135,7 +131,6 @@ extension ImageCollectionView: UISearchBarDelegate{
         imageViewPresenter.loadDataFromResource(1, text)
         self.collectionView.reloadData()
     }
-    
 }
 
 extension ImageCollectionView{
@@ -149,7 +144,6 @@ extension ImageCollectionView{
         imageView.modalPresentationStyle = .pageSheet
         
         print(cell.image)
-//        self.show(imageView, sender: self)
         self.present(imageView, animated: true, completion: nil)
         
     }
@@ -162,7 +156,6 @@ extension ImageCollectionView{
         }
     }
     
-    
     @objc func didRefresh(_ sender: UIRefreshControl){
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
             print("Reload data")
@@ -172,7 +165,6 @@ extension ImageCollectionView{
                 self.customRefreshControl.endRefreshing()
             }
         }
-        
     }
     
     @objc func didPinch(_ sender: UIPinchGestureRecognizer){
@@ -199,7 +191,6 @@ extension ImageCollectionView{
             }
         }
     }
-    
 }
 
 class ImageCell: UICollectionViewCell {

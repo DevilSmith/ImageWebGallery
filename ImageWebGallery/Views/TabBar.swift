@@ -1,8 +1,9 @@
 //
 //  TabBar.swift
-//  Swift VK
+//  ImageWebGallery
 //
 //  Created by Stanislav Briver on 19.10.2021.
+//  Copyright © 2021 Stanislav Briver. All rights reserved.
 //
 
 import UIKit
