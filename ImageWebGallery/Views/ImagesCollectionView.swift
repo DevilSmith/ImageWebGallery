@@ -26,7 +26,6 @@ class ImageCollectionView: UICollectionViewController, UINavigationBarDelegate {
     
     var sizeCell: CGSize!
     
-    
     let customRefreshControl: UIRefreshControl = {
         let refresh = UIRefreshControl()
         refresh.addTarget(self, action: #selector(didRefresh(_:)), for: .valueChanged)
@@ -34,8 +33,10 @@ class ImageCollectionView: UICollectionViewController, UINavigationBarDelegate {
     }()
     
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         let searchController = UISearchController(searchResultsController: nil)
         self.navigationItem.searchController = searchController
@@ -76,7 +77,6 @@ class ImageCollectionView: UICollectionViewController, UINavigationBarDelegate {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCell", for: indexPath) as! ImageCell
         
-        
         let count = self.imageViewPresenter.results.count
         
         if indexPath.row < count {
@@ -87,9 +87,6 @@ class ImageCollectionView: UICollectionViewController, UINavigationBarDelegate {
         return cell
     }
     
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath)
-    }
     
 }
 
@@ -133,9 +130,21 @@ extension ImageCollectionView: UISearchBarDelegate{
     
 }
 
-
-
 extension ImageCollectionView{
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(indexPath)
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCell", for: indexPath) as! ImageCell
+        
+        let imageView = ImageView(image: imageViewPresenter.results[indexPath.item].image!)
+        imageView.modalPresentationStyle = .pageSheet
+        
+        print(cell.image)
+//        self.show(imageView, sender: self)
+        self.present(imageView, animated: true, completion: nil)
+        
+    }
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let verticalAxis = scrollView.panGestureRecognizer.translation(in: scrollView.superview)
@@ -186,7 +195,6 @@ extension ImageCollectionView{
 }
 
 class ImageCell: UICollectionViewCell {
-    
     
     var data: ImageModel? {
         didSet {

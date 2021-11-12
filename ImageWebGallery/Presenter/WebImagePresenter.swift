@@ -16,27 +16,12 @@ class WebImagePresenter: ImageCollectionViewUpdateDelegate{
     
     private var increaseCounter = 1
     
-    var webImage: WebImages?
+    var downloadImageHelper = DownloadImageHelper()
     var parser = JSONParser<WebImages>()
     
     var results: [ImageModel] = []
     
     private var counter = 0
-    
-    
-    func downloadImage(urlString: String, completion: @escaping(UIImage?, Error?)->()){
-        DispatchQueue.global(qos: .background).sync {
-        
-        guard let url = URL(string: urlString) else {print("Failed to loading image"); return}
-        
-        URLSession.shared.dataTask(with: url) { dataImage, response, error in
-            
-            guard let data = dataImage else {return}
-            
-            completion(UIImage(data: data), nil)
-        }.resume()
-        }
-    }
     
     
     func loadDataFromResource(_ pageNumber: Int? = 1, _ querySearch: String? = "")->(){
@@ -53,7 +38,7 @@ class WebImagePresenter: ImageCollectionViewUpdateDelegate{
             if let tempResult = webImage?.results {
                 tempResult.forEach { imageResult in
                     DispatchQueue.global(qos: .background).sync{
-                        self.downloadImage(urlString: imageResult.urls.small) { image, error in
+                        self.downloadImageHelper.downloadImage(urlString: imageResult.urls.regular) { image, error in
                             print("Download image: \(imageResult.id)")
                             self.results.append(ImageModel(image: image))
                             DispatchQueue.main.async{

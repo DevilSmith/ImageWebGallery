@@ -19,7 +19,6 @@ struct ImageResult: Decodable{
     var urls: Urls
 }
 
-
 struct Urls: Decodable{
     
     var raw: String

@@ -20,6 +20,8 @@
 		F8D54243271F3F83004EFCA0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8D54242271F3F83004EFCA0 /* Assets.xcassets */; };
 		F8D54246271F3F83004EFCA0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8D54244271F3F83004EFCA0 /* LaunchScreen.storyboard */; };
 		F8D54251271F692F004EFCA0 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D54250271F692F004EFCA0 /* TabBar.swift */; };
+		F8EB49682736971600E79E36 /* DownloadImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EB49672736971600E79E36 /* DownloadImageHelper.swift */; };
+		F8EB496A27369E6C00E79E36 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EB496927369E6C00E79E36 /* ImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		F8D54245271F3F83004EFCA0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F8D54247271F3F83004EFCA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F8D54250271F692F004EFCA0 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
+		F8EB49672736971600E79E36 /* DownloadImageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadImageHelper.swift; sourceTree = "<group>"; };
+		F8EB496927369E6C00E79E36 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				F82E14EF2722F614007E39F7 /* JSONParser.swift */,
+				F8EB49672736971600E79E36 /* DownloadImageHelper.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -96,6 +101,7 @@
 			children = (
 				F8D5423D271F3F82004EFCA0 /* ImagesCollectionView.swift */,
 				F8D54250271F692F004EFCA0 /* TabBar.swift */,
+				F8EB496927369E6C00E79E36 /* ImageView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -199,7 +205,9 @@
 				F82E14F22722FADD007E39F7 /* WebImagePresenter.swift in Sources */,
 				F82E14E627208058007E39F7 /* ImagePresenter.swift in Sources */,
 				F82E14F02722F614007E39F7 /* JSONParser.swift in Sources */,
+				F8EB496A27369E6C00E79E36 /* ImageView.swift in Sources */,
 				F8D5423E271F3F82004EFCA0 /* ImagesCollectionView.swift in Sources */,
+				F8EB49682736971600E79E36 /* DownloadImageHelper.swift in Sources */,
 				F82E14E427207D82007E39F7 /* ImageModel.swift in Sources */,
 				F8D5423A271F3F82004EFCA0 /* AppDelegate.swift in Sources */,
 				F8D5423C271F3F82004EFCA0 /* SceneDelegate.swift in Sources */,
