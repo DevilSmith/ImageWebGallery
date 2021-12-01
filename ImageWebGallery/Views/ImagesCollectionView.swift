@@ -8,7 +8,7 @@
 
 import UIKit
 
-
+//MARK: - Protocol for delegate for ImageCollection
 protocol ImageCollectionViewUpdateDelegate {
     
     func updateCollectionView()->Void
@@ -17,6 +17,7 @@ protocol ImageCollectionViewUpdateDelegate {
     
 }
 
+//MARK: - Class of ImageCollectionView
 class ImageCollectionView: UICollectionViewController, UINavigationBarDelegate {
     
     let imageViewPresenter = WebImagePresenter()
@@ -95,7 +96,7 @@ class ImageCollectionView: UICollectionViewController, UINavigationBarDelegate {
     }
 }
 
-
+//MARK: - Work with FlowLayout
 extension ImageCollectionView: UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -112,7 +113,7 @@ extension ImageCollectionView: UICollectionViewDelegateFlowLayout{
     }
 }
 
-
+//MARK: - Result updating
 extension ImageCollectionView: UISearchResultsUpdating{
 
     func updateSearchResults(for searchController: UISearchController) {
@@ -122,7 +123,7 @@ extension ImageCollectionView: UISearchResultsUpdating{
     }
 }
 
-
+//MARK: - Work with SearchBar
 extension ImageCollectionView: UISearchBarDelegate{
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -133,8 +134,10 @@ extension ImageCollectionView: UISearchBarDelegate{
     }
 }
 
+
 extension ImageCollectionView{
     
+//MARK: - Selecting cell
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         #if DEBUG
         print(indexPath)
@@ -152,6 +155,7 @@ extension ImageCollectionView{
         
     }
     
+//MARK: - Scrolling cv with async updating
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let verticalAxis = scrollView.panGestureRecognizer.translation(in: scrollView.superview)
         
@@ -207,6 +211,7 @@ extension ImageCollectionView{
     }
 }
 
+//MARK: - Cell
 class ImageCell: UICollectionViewCell {
     
     var data: ImageModel? {
