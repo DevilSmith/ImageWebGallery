@@ -20,6 +20,7 @@ class NavigationController: UINavigationController {
     
     init(){
         super.init(nibName: nil, bundle: nil)
+        self.navigationBar.prefersLargeTitles = true
         self.pushViewController(imageView, animated: true)
     }
     

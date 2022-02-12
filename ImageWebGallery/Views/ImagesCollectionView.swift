@@ -41,7 +41,7 @@ class ImageCollectionView: UICollectionViewController, UINavigationBarDelegate {
     
     func setupNavigationItem(){
         self.title = "Web gallery"
-        self.navigationItem.largeTitleDisplayMode = .automatic
+        self.navigationItem.largeTitleDisplayMode = .always
         self.navigationController?.navigationBar.isTranslucent = true
         self.collectionView.contentInsetAdjustmentBehavior = .automatic
     }
