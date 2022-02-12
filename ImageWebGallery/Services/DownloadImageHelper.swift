@@ -13,15 +13,15 @@ class DownloadImageHelper{
     
     func downloadImage(urlString: String, completion: @escaping(UIImage?, Error?)->()){
         DispatchQueue.global(qos: .background).sync {
-        
-        guard let url = URL(string: urlString) else {print("Failed to loading image"); return}
-        
-        URLSession.shared.dataTask(with: url) { dataImage, response, error in
             
-            guard let data = dataImage else {return}
+            guard let url = URL(string: urlString) else {print("Failed to loading image"); return}
             
-            completion(UIImage(data: data), nil)
-        }.resume()
+            URLSession.shared.dataTask(with: url) { dataImage, response, error in
+                
+                guard let data = dataImage else {return}
+                
+                completion(UIImage(data: data), nil)
+            }.resume()
         }
     }
     

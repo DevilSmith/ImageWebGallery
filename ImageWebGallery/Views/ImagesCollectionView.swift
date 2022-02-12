@@ -21,7 +21,7 @@ protocol ImageCollectionViewUpdateDelegate {
 class ImageCollectionView: UICollectionViewController, UINavigationBarDelegate {
     
     let imageViewPresenter = WebImagePresenter()
-     
+    
     var updateDelegate: ImageCollectionViewUpdateDelegate?
     
     var sizeCell: CGSize!
@@ -73,11 +73,11 @@ class ImageCollectionView: UICollectionViewController, UINavigationBarDelegate {
         setupCell()
         
         self.collectionView.refreshControl = customRefreshControl
-
+        
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-
+        
         return imageViewPresenter.results.count
     }
     
@@ -106,8 +106,8 @@ extension ImageCollectionView: UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 1
     }
-
-
+    
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 1
     }
@@ -115,11 +115,11 @@ extension ImageCollectionView: UICollectionViewDelegateFlowLayout{
 
 //MARK: - Result updating
 extension ImageCollectionView: UISearchResultsUpdating{
-
+    
     func updateSearchResults(for searchController: UISearchController) {
-///       Real-time searching method:
-//        guard let text = searchController.searchBar.text else {return}
-//        print(text)
+        //        Real-time searching method:
+        //        guard let text = searchController.searchBar.text else {return}
+        //        print(text)
     }
 }
 
@@ -137,7 +137,7 @@ extension ImageCollectionView: UISearchBarDelegate{
 
 extension ImageCollectionView{
     
-//MARK: - Selecting cell
+    //MARK: - Selecting cell
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         #if DEBUG
         print(indexPath)
@@ -155,7 +155,7 @@ extension ImageCollectionView{
         
     }
     
-//MARK: - Scrolling cv with async updating
+    //MARK: - Scrolling cv with async updating
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let verticalAxis = scrollView.panGestureRecognizer.translation(in: scrollView.superview)
         
@@ -229,11 +229,11 @@ class ImageCell: UICollectionViewCell {
         imageView.clipsToBounds = true
         return imageView
     }()
-
+    
     override init(frame: CGRect) {
         super.init(frame: .zero)
         contentView.addSubview(image)
-
+        
         UIView.animate(withDuration: 0.5) {
             self.image.alpha = 1
         }

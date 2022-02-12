@@ -49,7 +49,7 @@ class WebImagePresenter: ImageCollectionViewUpdateDelegate{
                                 self.updateCollectionView()
                             }
                         }
-                }
+                    }
                 }
             }
         }
@@ -67,8 +67,8 @@ class WebImagePresenter: ImageCollectionViewUpdateDelegate{
             #if DEBUG
             print(self.increaseCounter)
             #endif
-///     Enable infinity scrolling update data in CollectionView
-///     --->       self.loadDataFromResource(self.increaseCounter)
+            ///     Enable infinity scrolling update data in CollectionView
+            ///     --->       self.loadDataFromResource(self.increaseCounter)
             self.increaseCounter += 1
         }
     }

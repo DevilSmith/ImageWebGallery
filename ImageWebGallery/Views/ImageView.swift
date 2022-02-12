@@ -42,13 +42,11 @@ class ImageView: UIViewController{
         self.navigationItem.largeTitleDisplayMode = .never
         
         self.view.addSubview(imageView)
-    
+        
         setupConstraint()
         
         print(image)
-       
+        
         
     }
-    
-    
 }
