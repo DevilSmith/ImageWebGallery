@@ -14,6 +14,10 @@ class ImageView: UIViewController{
     
     let imageView: UIImageView
     
+    func setupImageView(){
+        self.imageView.contentMode = .scaleAspectFill
+    }
+    
     init(image: UIImage){
         self.image = image
         self.imageView = UIImageView(image: image)
@@ -40,6 +44,8 @@ class ImageView: UIViewController{
         
         self.view.backgroundColor = .systemBackground
         self.navigationItem.largeTitleDisplayMode = .never
+        
+        setupImageView()
         
         self.view.addSubview(imageView)
         
