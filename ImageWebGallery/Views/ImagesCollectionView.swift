@@ -145,7 +145,7 @@ extension ImageCollectionView{
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCell", for: indexPath) as! ImageCell
         
-        let imageView = ImageView(image: imageViewPresenter.results[indexPath.item].image!)
+        let imageView = ImageView(image: imageViewPresenter.results[indexPath.item].image)
         imageView.modalPresentationStyle = .pageSheet
         
         #if DEBUG

@@ -44,7 +44,7 @@ class WebImagePresenter: ImageCollectionViewUpdateDelegate{
                             #if DEBUG
                             print("Download image: \(imageResult.id)")
                             #endif
-                            self.results.append(ImageModel(image: image))
+                            self.results.append(ImageModel(image: image!))
                             DispatchQueue.main.async{
                                 self.updateCollectionView()
                             }
