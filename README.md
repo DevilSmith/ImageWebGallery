@@ -3,3 +3,4 @@
 
 This application using MVP-Passive View architecture, REST and pure programmatically UIKit.
 
+![GifFile](/GitAssets/GIF.gif)
